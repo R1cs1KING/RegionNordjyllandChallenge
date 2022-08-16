@@ -6,7 +6,7 @@ namespace PalindromeTests
         public void TestOneWordPalindromeTrue()
         {
             // Arrange
-            String input = "racecar";
+            string input = "racecar";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -19,7 +19,7 @@ namespace PalindromeTests
         public void TestOneWordPalindromeFalse()
         {
             // Arrange
-            String input = "stormtrooper";
+            string input = "stormtrooper";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -32,7 +32,7 @@ namespace PalindromeTests
         public void TestOneWordPalindromeWithSpoecialCharactersTrue()
         {
             // Arrange
-            String input = "rac#ecar";
+            string input = "rac#ecar";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -45,7 +45,7 @@ namespace PalindromeTests
         public void TestOneWordPalindromeWithSpecialCharactersFalse()
         {
             // Arrange
-            String input = "stormtro#oper";
+            string input = "stormtro#oper";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -58,7 +58,7 @@ namespace PalindromeTests
         public void TestTwoWordPalindromeTrue()
         {
             // Arrange
-            String input = "stack cats";
+            string input = "stack cats";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -71,7 +71,7 @@ namespace PalindromeTests
         public void TestTwoWordPalindromeFalse()
         {
             // Arrange
-            String input = "stack stacks";
+            string input = "stack stacks";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -117,10 +117,10 @@ namespace PalindromeTests
         }
 
         [Fact]
-        public void TestNumberAsStringPalindromeTrue()
+        public void TestNumberAsstringPalindromeTrue()
         {
             // Arrange
-            String input = "10101";
+            string input = "10101";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -130,10 +130,10 @@ namespace PalindromeTests
         }
 
         [Fact]
-        public void TestNumberAsStringPalindromeFalse()
+        public void TestNumberAsstringPalindromeFalse()
         {
             // Arrange
-            String input = "2022";
+            string input = "2022";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -143,10 +143,10 @@ namespace PalindromeTests
         }
 
         [Fact]
-        public void TestFloatNumberAsStringPalindromeTrue()
+        public void TestFloatNumberAsstringPalindromeTrue()
         {
             // Arrange
-            String input = "101.101";
+            string input = "101.101";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);
@@ -156,10 +156,10 @@ namespace PalindromeTests
         }
 
         [Fact]
-        public void TestFloatNumberAsStringPalindromeFalse()
+        public void TestFloatNumberAsstringPalindromeFalse()
         {
             // Arrange
-            String input = "20.22";
+            string input = "20.22";
 
             // Act
             bool isPalindrome = PalindromeChallenge.Palindrome.isPalindrome(input);

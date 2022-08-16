@@ -4,17 +4,17 @@ namespace PalindromeChallenge
 {
     public class Palindrome
     {
-        public static Boolean isPalindrome(String inputString)
+        public static Boolean isPalindrome(string inputstring)
         {
             // some consider empty string as a palindrome as well: https://stackoverflow.com/questions/28654209/can-an-empty-string-be-considered-a-palindrome
             try
             {
-                Console.WriteLine(inputString);
-                inputString = formatInput(inputString, "[^a-zA-Z0-9%]");
+                Console.WriteLine(inputstring);
+                inputstring = formatInput(inputstring, "[^a-zA-Z0-9%]");
 
-                Console.WriteLine(inputString);
+                Console.WriteLine(inputstring);
 
-                return inputString == reverseString(inputString);
+                return inputstring == reversestring(inputstring);
             } catch (Exception ex)
             {
                 throw;
@@ -22,33 +22,33 @@ namespace PalindromeChallenge
         }
         public static Boolean isPalindrome(int inputInt)
         {
-            String inputString = inputInt.ToString();
-            if (inputString != null)
+            string inputstring = inputInt.ToString();
+            if (inputstring != null)
             {
-                Console.WriteLine(inputString);
-                inputString = formatInput(inputString, "[^0-9%]");
+                Console.WriteLine(inputstring);
+                inputstring = formatInput(inputstring, "[^0-9%]");
 
-                Console.WriteLine(inputString);
+                Console.WriteLine(inputstring);
 
-                return inputString == reverseString(inputString);
+                return inputstring == reversestring(inputstring);
             }
 
             return false;
         }
 
         // formatting to ignore spacing, casing and special characters
-        private static String formatInput(String inputString, String regexString)
+        private static string formatInput(string inputstring, string regexstring)
         {
             try
             {
-                return Regex.Replace(inputString, regexString, string.Empty).ToLower();
+                return Regex.Replace(inputstring, regexstring, string.Empty).ToLower();
             } catch (ArgumentNullException)
             {
                 throw;
             }
         }
 
-        private static String reverseString(string inputStrring)
+        private static string reversestring(string inputStrring)
         {
             char[] charArray = inputStrring.ToCharArray();
             Array.Reverse(charArray);
