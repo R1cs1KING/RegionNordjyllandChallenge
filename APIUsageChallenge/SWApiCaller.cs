@@ -1,10 +1,5 @@
 ﻿using APIUsageChallenge.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using static System.Console;
 
 namespace APIUsageChallenge
 {
@@ -13,7 +8,24 @@ namespace APIUsageChallenge
         static HttpClient client = new HttpClient();
         static string baseUrl = "https://swapi.dev/api/people/";
 
-        public static async Task<Person> callGetPeopelById(int id)
+        public static Person getPersonByID(int id)
+        {
+            Person person = null;
+
+            try
+            {
+                person = callAPIGetPeopelById(id).Result;
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex);
+                throw;
+            }
+
+            return person;
+        }
+
+        private static async Task<Person> callAPIGetPeopelById(int id)
         {
             Person person = null;
             client.BaseAddress = new Uri(baseUrl);
@@ -22,10 +34,11 @@ namespace APIUsageChallenge
 
             try
             {
-                Console.WriteLine("tries");
                 person = await GetPersonAsync(baseUrl + id);
-            } catch (Exception e) {
-                Console.WriteLine(e);
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex);
                 throw;
             }
 
@@ -38,6 +51,9 @@ namespace APIUsageChallenge
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode) {
                 person = await response.Content.ReadAsAsync<Person>();
+            } else
+            {
+                throw new Exception("No person with the given id");
             }
 
             return person;

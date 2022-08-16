@@ -11,21 +11,42 @@ namespace APIUsageChallenge
 
             Write("Id of desired person: ");
 
-            string input = ReadLine();
+            string inputString = ReadLine();
+            int inputId = 0;
 
-            Task<Person> person = SWApiCaller.callGetPeopelById(int.Parse(input));
+            try
+            {
+                inputId = int.Parse(inputString);
+            }
+            catch (FormatException)
+            {
+                WriteLine("You need to use an integer as an id");
+                throw;
+            }
+            catch (Exception e)
+            {
+                WriteLine(e.ToString());
+                throw;
+            }
 
-            Person personResult = person.Result;
+            Person person = SWApiCaller.getPersonByID(inputId);
 
-            Console.WriteLine("Person's name: " + personResult.Name);
+            try
+            {
+                WriteLine("Person's name: " + person.Name);
 
-            Console.WriteLine("Person's height: " + personResult.Height);
+                WriteLine("Person's height: " + person.Height);
 
-            Console.WriteLine("Person's gender: " + personResult.Gender);
+                WriteLine("Person's gender: " + person.Gender);
 
-            Console.WriteLine("Person's mass: " + personResult.Mass);
+                WriteLine("Person's mass: " + person.Mass);
 
-            Console.WriteLine("Person's eye color: " + personResult.EyeColor);
+                WriteLine("Person's eye color: " + person.EyeColor);
+            }
+            catch (NullReferenceException)
+            {
+                WriteLine("No persion with that id.");
+            }
         }
     }
 }
