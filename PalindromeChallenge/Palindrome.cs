@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace PalindromeChallenge
 {
-    internal class Palindrome
+    public class Palindrome
     {
         public static Boolean isPalindrome(String inputString)
         {
+            // some consider empty string as a palindrome as well: https://stackoverflow.com/questions/28654209/can-an-empty-string-be-considered-a-palindrome
             try
             {
                 Console.WriteLine(inputString);
-                inputString = formatInput(inputString, "[^a-zA-Z%]");
+                inputString = formatInput(inputString, "[^a-zA-Z0-9%]");
 
                 Console.WriteLine(inputString);
 
@@ -24,8 +19,6 @@ namespace PalindromeChallenge
             {
                 throw;
             }
-
-            return false;
         }
         public static Boolean isPalindrome(int inputInt)
         {
