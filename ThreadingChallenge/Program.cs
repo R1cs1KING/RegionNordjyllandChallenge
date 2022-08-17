@@ -47,7 +47,7 @@ namespace ThreadingChallenge
             semaphore = new SemaphoreSlim(0, 3);
             Console.WriteLine("{0} tasks can enter the semaphore.",
                               semaphore.CurrentCount);
-            Task[] tasks = new Task[26];
+            Task[] tasks = new Task[lines.Count];
 
             // Create and start five numbered tasks.
             for (int i = 0; i < lines.Count; i++)
@@ -57,7 +57,7 @@ namespace ThreadingChallenge
                 tasks[i] = Task.Run(() =>
                 {
                     // Each task begins by requesting the semaphore.
-                    Console.WriteLine("T{0} begins and waits for the semaphore.",
+                    Console.WriteLine("{0} begins and waits for the semaphore.",
                                       lines[j]);
 
                     int semaphoreCount;
@@ -68,7 +68,7 @@ namespace ThreadingChallenge
 
                         // The task sleeps for 1-5 seconds
                         int sleepTime = random.Next(1000, 5000);
-                        WriteLine(sleepTime.ToString());
+                        WriteLine("Sleeping time: " + sleepTime.ToString());
                         Thread.Sleep(sleepTime);
                     }
                     finally

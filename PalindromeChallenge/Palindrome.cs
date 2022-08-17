@@ -9,10 +9,7 @@ namespace PalindromeChallenge
             // some consider empty string as a palindrome as well: https://stackoverflow.com/questions/28654209/can-an-empty-string-be-considered-a-palindrome
             try
             {
-                Console.WriteLine(inputstring);
                 inputstring = formatInput(inputstring, "[^a-zA-Z0-9%]");
-
-                Console.WriteLine(inputstring);
 
                 return inputstring == reversestring(inputstring);
             } catch (Exception ex)
