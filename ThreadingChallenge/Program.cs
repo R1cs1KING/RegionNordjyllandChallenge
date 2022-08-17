@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace ThreadingChallenge
 {
@@ -8,10 +9,10 @@ namespace ThreadingChallenge
     {
 
         private static SemaphoreSlim semaphore;
-        // A padding interval to make the output more orderly.
-        private static int padding;
+        private static Random random = new Random();
 
-        private static List<string> lines = new List<string>() {
+        private static List<string> lines = new List<string>()
+        {
                 "Task A",
                 "Task B",
                 "Task C",
@@ -42,39 +43,40 @@ namespace ThreadingChallenge
 
         public static void Main()
         {
-            // Create the semaphore.
+            // Create the semaphore with maximum 3 task at a time.
             semaphore = new SemaphoreSlim(0, 3);
             Console.WriteLine("{0} tasks can enter the semaphore.",
                               semaphore.CurrentCount);
-            Task[] tasks = new Task[lines.Count];
+            Task[] tasks = new Task[26];
 
             // Create and start five numbered tasks.
             for (int i = 0; i < lines.Count; i++)
             {
-                Console.WriteLine(lines.Count);
+                // It helps keeping track of the index of the list.
+                int j = i;
                 tasks[i] = Task.Run(() =>
                 {
                     // Each task begins by requesting the semaphore.
-                    Console.WriteLine("Task {0} begins and waits for the semaphore.",
-                                      Task.CurrentId);
+                    Console.WriteLine("T{0} begins and waits for the semaphore.",
+                                      lines[j]);
 
                     int semaphoreCount;
                     semaphore.Wait();
                     try
                     {
-                        Interlocked.Add(ref padding, 100);
+                        Console.WriteLine("{0} enters the semaphore.", lines[j]);
 
-                        Console.WriteLine("Task {0} enters the semaphore.", Task.CurrentId);
-
-                        // The task just sleeps for 1+ seconds.
-                        Thread.Sleep(1000 + padding);
+                        // The task sleeps for 1-5 seconds
+                        int sleepTime = random.Next(1000, 5000);
+                        WriteLine(sleepTime.ToString());
+                        Thread.Sleep(sleepTime);
                     }
                     finally
                     {
                         semaphoreCount = semaphore.Release();
                     }
-                    Console.WriteLine("Task {0} releases the semaphore; previous count: {1}.",
-                                      Task.CurrentId, semaphoreCount);
+                    Console.WriteLine("{0} releases the semaphore; previous count: {1}.",
+                                      lines[j], semaphoreCount);
                 });
             }
 
