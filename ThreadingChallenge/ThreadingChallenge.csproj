@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\APIUsageChallenge\APIUsageChallenge.csproj" />
+  </ItemGroup>
+
 </Project>
